@@ -23,4 +23,21 @@ steps:
 
 - script: |
      npm run build
-  displayName: 'npm install and build'    
+  displayName: 'npm install and build'
+
+- task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: '$(Build.BinariesDirectory)'
+    includeRootFolder: true
+    archiveType: 'zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    replaceExistingArchive: true
+
+- task: UniversalPackages@0
+  inputs:
+    command: 'publish'
+    publishDirectory: '$(Build.ArtifactStagingDirectory)'
+    feedsToUsePublish: 'internal'
+    vstsFeedPublish: '5c765a57-a667-4e71-837d-7662efe3777f/fc9cf2b2-4287-4ea6-a29e-652174be7f39'
+    vstsFeedPackagePublish: 'universaldemo'
+    versionOption: 'minor'
