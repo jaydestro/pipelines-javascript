@@ -20,7 +20,6 @@ steps:
     command: 'install'
     customRegistry: 'useFeed'
     customFeed: '5c765a57-a667-4e71-837d-7662efe3777f/fc9cf2b2-4287-4ea6-a29e-652174be7f39'
-  displayName: 'npm install and build'
 
 - script: |
      npm run build
